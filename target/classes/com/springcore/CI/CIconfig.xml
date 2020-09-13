@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:content="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 	http://www.springframework.org/schema/beans/spring-beans.xsd
+ 	http://www.springframework.org/schema/context
+ 	http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- <bean class="com.springcore.CI.Certi" name="cer"> 
+ 		<constructor-arg value="Android Using Kotlin" type="String" /> 
+     </bean> 
+-->
+
+<!-- using c schema -->
+	<bean class="com.springcore.CI.Certi" name="cer" c:name="Java by Shubham Nigam" />
+
+<!--
+	<bean class="com.springcore.CI.Person" name="person">
+		 one constructor-arg means 1 parameter of constructor 
+		<constructor-arg value="Shubham" type="String" />
+		<constructor-arg value="101" type="int" />
+		<constructor-arg ref="cer" />
+	</bean>
+-->
+	
+<!-- using c schema -->
+	    
+	   <bean class="com.springcore.CI.Person" name="p1">
+	   <constructor-arg value="Shubhanshu Arya"/>
+	   <constructor-arg value="1111" />
+	   <constructor-arg ref="cer" />
+	   <constructor-arg>
+	   		<list>
+	   			<value>91-9838569722</value>
+				<value>91-9936678886</value>
+				<value>91-75999101723</value>
+	   		</list>
+	   </constructor-arg>
+	   </bean>
+
+		<bean class="com.springcore.CI.Addition" name="add">
+			<constructor-arg value="12" index="1"/> <!-- index 1 means to assign value in 2nd arg of constructor -->
+			<constructor-arg value="34" index="0"/>	<!-- index 0 means to assign value in 1st arg of constructor -->
+		</bean>
+</beans>

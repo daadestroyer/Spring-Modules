@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:content="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 	http://www.springframework.org/schema/beans/spring-beans.xsd
+ 	http://www.springframework.org/schema/context
+ 	http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- INJECTING PRIMITIVE DATATYPES -->
+	<!-- =================================== -->
+	<!-- This is our 1st bean -->
+	<!-- This bean is for student class -->
+	<bean class="com.springcore.bean.Student" name="student1">
+		<!-- Using setter injection -->
+		<property name="studentId" value="223344" />
+		<property name="studentName" value="Shubham Nigam" />
+		<property name="studentAddress" value="Kanpur" />
+	</bean>
+	<!-- This is our 2nd bean -->
+	<!-- This bean is for student class -->
+	<bean class="com.springcore.bean.Student" name="student2">
+		<!-- Using setter injection -->
+		<property name="studentId" value="123456" />
+		<property name="studentName" value="Shubhanshu Arya" />
+		<property name="studentAddress" value="Kanpur" />
+	</bean>
+
+	<!-- This is our 3rd bean -->
+	<!-- This bean is for student class -->
+	<!-- Setting property using P-Schema -->
+	<bean class="com.springcore.bean.Student" name="student3"
+		p:studentId="222222" p:studentName="Sakshi Saxena"
+		p:studentAddress="Kanpur" />
+
+	<!-- INJECTING COLLECTION DATATTYPES -->
+	<!-- =================================== -->
+
+	<!-- This bean is for Employee class -->
+	<bean class="com.springcore.bean.Emp" name="employee1">
+		<property name="name" value="Raadhe" />
+		<property name="phones">
+			<list>
+				<value>91-9838569722</value>
+				<value>91-9936678886</value>
+				<value>91-75999101723</value>
+			</list>
+		</property>
+		<property name="addresses">
+			<set>
+				<value>Kanpur</value>
+				<value>Lucknow</value>
+				<value>Delhi</value>
+				<value>Bangalore</value>
+			</set>
+		</property>
+		<property name="courses">
+			<map>
+				<entry key="Java" value="2month" />
+				<entry key="Python" value="1.2months" />
+				<entry key="C" value="1months" />
+			</map>
+		</property>
+	</bean>
+
+</beans>
