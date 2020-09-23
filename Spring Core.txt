@@ -1,0 +1,241 @@
+SPRING CORE:-
+==============
+1. what is spring framework complete explanation
+------------------------------------------------
+Spring is a dependency injection framework to make java application loosely coupled
+Spring framework makes the easy development of JavaEE applications . Developed by Rod Johnson in  2003
+
+2. spring frameworks modules
+--------------------------
+spring core , spring jdbc , spring mvc , spring orm , spring security , spring transaction , spring boot
+
+3. spring IOC container
+-----------------------
+Inversion of Control:-
+-----------------------
+Inversion of Control also knows as Ioc . In inversion of control we will remove the control of creation of object from our side and give this responsibility to spring , and in future creation of object will be done by spring this is called inversion of control . and in inversion of control spring create object at runtime
+NOTE : (object creation responsibility will be handled by spring)
+
+Spring and JEE:-
+---------------
+In J2EE applications lots of working layer are there like Front end,Business layer and data access layer...
+ 
+
+Spring Ioc Container:-
+--------------------
+1. Spring Container is a predefined programs which we will get in Spring framework , and it is responsible for creating object , holding object in memory and injecting then into another object when required 
+2. Spring container required beans{POJO's} and XML Configuration
+3. With the help of beans Configuration spring create object , hold object in memory , and inject them  into another object.
+IN-SHORT : It will automatically create all the required dependency and it will inject that dependency also
+-------------------------------------------
+
+
+Dependency injection
+--------------------
+1. It is a  design pattern
+2. dependency means when one class is dependend on another class
+3. spring act as a doctor it inject B class object inside A class because A class depends on B class
+
+class A{
+	B b; // here spring will come and inject B class  dependency which is B class objects and we don't 	     		       		 // have to create object it will done by spring automatically
+
+	public void dowork(){
+
+	}
+}
+class B{
+	public void dowork(){
+
+	}
+} 
+
+Q. Dependency injection can be done in 2 Ways ?
+------------------------------------------------
+ 
+1. Using setters injection(Property injection)
+----------------------------------------------
+class Student{
+	int id;
+	String name,address;
+	setId(id){
+	    this.id = id;
+	}
+	setName(name){
+	    this.name = name;
+	}
+	setAddress(address){
+	    this.address = address;
+	}
+}
+
+2. Using constructor injection
+-------------------------------
+class Student{
+	int id;
+	String name,address;
+	Student(int id,String name,String address){
+	}
+}
+
+Configuration File:-
+--------------------
+1. Here we mention all configuration of our project to tell the container in XML format 
+2. That type of class which we will provide to Ioc container that type of class are called beans.
+3. In configuration file we declare beans and its dependency
+
+<beans>
+  <bean>----</bean>
+  <bean>----</bean>
+  <bean>----</bean>
+</beans>
+
+
+Data types dependency :-
+------------------------
+1. Primitive Data Types:-
+-------------------------
+byte , short , char , int , float , double , long , boolean 
+
+2. Collection Types:-
+----------------------
+List , Set , Map and Properties
+
+3. Reference Data Types:-
+------------------------
+Other class Object
+
+Injecting values (Primitive Data types) Using setters and getters injection
+--------------------------------------------------------------------------
+1st is Injecting values using normally bean tags and property tags
+and 2nd is using P Schema tags
+
+<bean class="com.springcore.bean.Student" name="student2">
+		<!-- Using setter injection -->
+		<property name="studentId" value="123456" />
+		<property name="studentName" value="Shubhanshu Arya" />
+		<property name="studentAddress" value="Kanpur" />
+</bean>
+
+<bean class="com.springcore.bean.Student" name="student3" p:studentId="222222" p:studentName="Sakshi Saxena"
+		p:studentAddress="Kanpur" />
+			
+7.Injecting  Collection Using setters and getters injection
+-----------------------------------------------------------
+<bean class="com.springcore.bean.Emp" name="employee1">
+<!-- injection list type-->
+
+		<property name="name" value="Raadhe" />
+		<property name="phones">
+			<list>
+				<value>91-9838569722</value>
+				<value>91-9936678886</value>
+				<value>91-75999101723</value>
+			</list>
+		</property>
+<!-- injection set type-->
+
+		<property name="addresses">
+			<set>
+				<value>Kanpur</value>
+				<value>Lucknow</value>
+				<value>Delhi</value>
+				<value>Bangalore</value>
+			</set>
+		</property>
+<!-- injection map type-->
+
+		<property name="courses">
+			<map>
+				<entry key="Java" value="2month" />
+				<entry key="Python" value="1.2months" />
+				<entry key="C" value="1months" />
+			</map>
+		</property>
+	</bean>
+	
+	
+8.Injecting Reference Type Using setters and getters injection
+---------------------------------------------------------------
+we can inject reference type in  two ways 1st is normally using bean and property tag and 2nd is using P Schema tag
+
+<!--Creating B object -->
+
+	<bean class="com.springcore.ref.B" name="bref">
+		<property name="y" value="90" />
+	</bean>
+
+<!-- A object -->
+	
+	<bean class="com.springcore.ref.A" name="aref">
+		<property name="x" value="12" />
+		<property name="ob" ref="bref" />
+	</bean>
+
+<!--Injection A properties using P Schema -->
+
+	<bean class="com.springcore.ref.A" name="aref" p:x="33"
+		p:ob-ref="bref" />
+
+9.Constructor Injection
+--------------------------
+
+10. Ambiguity problem
+
+11.Spring Bean LifeCycle
+------------------------
+Using XML
+---------
+<content:annotation-config /> <!-- all the annotations started if you're using any annotation -->
+
+	<bean class="com.springcore.lifecycle.Samosa" name="samosa1"
+		init-method="hey" destroy-method="bye">
+		<property name="price" value="10"></property>
+	</bean>
+
+Using Inteface
+--------------
+	<bean class="com.springcore.lifecycle.Pepsi" name="pepsi1">
+		<property name="price" value="14" />
+	</bean>
+
+Using Annotation
+-----------------
+	<bean class="com.springcore.lifecycle.Jalebi" name="jalebi1">
+		<property name="price" value="20" />
+	</bean>
+	
+12.Auto wiring of spring beans
+-------------------------------
+1.Auto wiring is the method in which programmer do not need to inject one class reference to another class which is dependent
+  normally we have to specify in bean tag that your're injection property but using AutoWiring you do not need to do this you                
+  just simply jave to go to that depdendent class and use this annotation [@AutoWired]
+
+2.If you put @AutoWired annotation after properties then internally Property Injection will work
+
+3.If you put @AutoWired annotation before setter and getter then internally Setter Injection will work
+
+4.If you put @AutoWired annotation before constructor then internally Constructor Injection will work
+
+>>> In Autowiring spring inject all dependency automatically we just tell to spring container type and 	    name of dependency and spring will inject that dependency automatically
+>>> Lets say A and B two class are there and A is dependent on B , means A requires B object and when  
+    we link A with B that thing we will called as wiring .  noramlly inside bean tag we will wired that bean by using ref tag like this <bean class="---" ref="--" /> so this will done by us but in spring wiring this will done by spring container automatically...
+>>> We can do autowiring in two ways by using XML file or by using Annotation...
+>>> In XML we have some autowiring modes like byName , byType , Constructor 
+>>> In Annotation we have some annotation like @AutoWired
+>>> Advantage of autowiring is it is automatic and lesscode
+>>> Autowiring disadvantage no control of programmer and it can't be used for primitive and string it 
+    can be used for object type only.
+3.StandAlone Collections
+
+
+Advantage of autowiring:-
+-------------------------
+1. automatically dependency injected 
+2. Less and clean code
+3. Complexity decreases
+
+Disadvantage of autowiring:-
+--------------------------
+1. No control of programmer 
+2. It can't be used for primitive types only for Object types
+--------------------------
